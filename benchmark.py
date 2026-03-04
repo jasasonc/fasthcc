@@ -18,20 +18,12 @@ from pathlib import Path
 import numpy as np
 
 # ---------------------------------------------------------------------------
-# Configuration
+# Configuration — set via environment variables or edit these defaults
 # ---------------------------------------------------------------------------
 N_RUNS = 3
 
-HCC_PATH = Path(
-    r"C:\Users\jasas\Work\Clanki\Clanek_2\Trigger_and_acquisition"
-    r"\experiment_20260304\stage1_camera\DefaultName_20260304T145650766"
-    r"\_20260304T145650766_20260304T145651272.hcc"
-)
-REF_NPY_PATH = Path(
-    r"C:\Users\jasas\Work\Clanki\Clanek_2\Trigger_and_acquisition"
-    r"\experiment_20260304\stage1_camera\DefaultName_20260304T145650766"
-    r"\_20260304T145650766_20260304T145651272.npy"
-)
+HCC_PATH = Path(os.environ.get("BENCH_HCC_PATH", "recording.hcc"))
+REF_NPY_PATH = Path(os.environ.get("BENCH_REF_NPY_PATH", "recording.npy"))
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -129,8 +121,10 @@ print("-" * 50)
 print("[3/3] TelopsToolbox -- calibrated float32 read")
 print("-" * 50)
 
-# Add TelopsToolbox to path
-sys.path.insert(0, r"C:\Users\jasas\AppData\Local\Temp")
+# Add TelopsToolbox to path (set TELOPS_TOOLBOX_PATH if not on sys.path)
+_telops_path = os.environ.get("TELOPS_TOOLBOX_PATH")
+if _telops_path:
+    sys.path.insert(0, _telops_path)
 
 import math
 
