@@ -1,10 +1,10 @@
 fasthcc
 =======
 
-Fast, pure-Python reader and writer for Telops HCC infrared camera files — reverse-engineered directly from the binary format, no SDK or TelopsToolbox required.
+Fast, pure-Python reader and writer for Telops HCC infrared camera files — no SDK or TelopsToolbox required.
 
 ``fasthcc`` reads and writes ``.hcc`` files produced by Telops FAST-series IR cameras using NumPy arrays.
-The binary header format (V5–V12) was determined by analysis of the file structure and validated against real camera data.
+The binary header format (V5–V12) was implemented based on analysis of the file structure and reference documentation shipped with the camera, and validated against real camera data.
 It has a single dependency (numpy) and is designed as a drop-in replacement for TelopsToolbox's ``SequenceReaderP``,
 which is slow and has compatibility bugs with numpy 2.x.
 
@@ -180,3 +180,14 @@ Limitations
   allocate output buffers proportional to the number of requested frames.
 - **No calibration blocks.** Written files contain valid headers and pixel data but not embedded
   NUC calibration tables. Telops software can still display the data.
+
+
+Disclaimer
+----------
+
+fasthcc is an independent, community-developed project. It is not affiliated with, endorsed by,
+or supported by Telops Inc. The HCC file format was implemented based on reference documentation
+shipped with the camera hardware.
+
+"Telops" and "FAST" are trademarks of `Telops Inc. <https://www.telops.com>`_ All other
+trademarks are the property of their respective owners.
